@@ -10,6 +10,8 @@ import {globalStyles} from '../styles/global';
 import PlusIcon from '../assets/icons/plus.svg';
 import TrashIcon from '../assets/icons/trash.svg';
 import {useState} from 'react';
+import Input from '../components/Input';
+import Button from '../components/Button';
 
 export default function TrackerScreen() {
   const [tracker, setTracker] = useState<string>('');
@@ -36,18 +38,21 @@ export default function TrackerScreen() {
   return (
     <View style={container}>
       <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="Tambah Tracker"
-          placeholderTextColor={'rgba(187, 224, 250, 0.25)'}
-          onChangeText={changeTextHandle}
-        />
+        <Input text="Tambah Tracker" onChange={changeTextHandle} />
 
-        <TouchableNativeFeedback onPress={onAddTrackers}>
+        {/* <TouchableNativeFeedback onPress={onAddTrackers}>
           <View style={styles.inputIcon}>
             <PlusIcon width={18} height={18} />
           </View>
-        </TouchableNativeFeedback>
+        </TouchableNativeFeedback> */}
+        <Button
+          // navigation={navigation}
+          Icon={PlusIcon}
+          variant="secondary"
+          onPress={onAddTrackers}
+          style={{gap: 10}}
+          // text="Tambah Tracker"
+        />
       </View>
       <View style={styles.trackerContainer}>
         <FlatList

@@ -14,6 +14,9 @@ import ListIcon from '../assets/icons/list.svg';
 import PenIcon from '../assets/icons/pen.svg';
 import ClockIcon from '../assets/icons/clock.svg';
 import SubuhIcon from '../assets/icons/subuh.svg';
+import Button from '../components/Button';
+import Card from '../components/Card';
+import Input from '../components/Input';
 
 const datas = [
   {
@@ -79,52 +82,32 @@ export default function HomeScreen({navigation}: any) {
           </View>
         </View>
         <View style={styles.cardGrid}>
-          {/* <FlatList
+          <FlatList
             data={datas}
             numColumns={2}
-            renderItem={() => {
-              return ( */}
-          <View style={styles.card}>
-            <View style={styles.cardTitleContainer}>
-              <Text style={styles.cardSubtitle}>Subuh</Text>
-              <Text style={styles.cardTitle}>05:18</Text>
-            </View>
-            <SubuhIcon width={18} height={18} stroke={'#BBE0FA'} />
-          </View>
-          <View style={styles.card}>
-            <View style={styles.cardTitleContainer}>
-              <Text style={styles.cardSubtitle}>Subuh</Text>
-              <Text style={styles.cardTitle}>05:18</Text>
-            </View>
-            <SubuhIcon width={18} height={18} stroke={'#BBE0FA'} />
-          </View>
-          <View style={styles.card}>
-            <View style={styles.cardTitleContainer}>
-              <Text style={styles.cardSubtitle}>Subuh</Text>
-              <Text style={styles.cardTitle}>05:18</Text>
-            </View>
-            <SubuhIcon width={18} height={18} stroke={'#BBE0FA'} />
-          </View>
-          {/* ); */}
-          {/* }} */}
-          {/* /> */}
+            renderItem={({item}) => {
+              return <Card data={item} />;
+            }}
+          />
         </View>
       </View>
 
       <View style={styles.buttonContainer}>
-        <TouchableNativeFeedback onPress={() => navigation.navigate('Tracker')}>
-          <View style={buttonPrimary}>
-            <ListIcon width={18} height={18} stroke={'#BBE0FA'} />
-            <Text style={buttonTextPrimary}>Tracker</Text>
-          </View>
-        </TouchableNativeFeedback>
-        <TouchableNativeFeedback
-          onPress={() => navigation.navigate('Province')}>
-          <View style={buttonSecondary}>
-            <PenIcon width={18} height={18} stroke={'#1B262C'} />
-            <Text style={buttonTextSecondary}>Ubah Lokasi</Text>
-          </View>
-        </TouchableNativeFeedback>
+        <Button
+          navigation={navigation}
+          Icon={ListIcon}
+          onPress={() => navigation.navigate('Tracker')}
+          text="Tambah Tracker"
+          style={{gap: 10}}
+        />
+        <Button
+          navigation={navigation}
+          Icon={PenIcon}
+          variant="secondary"
+          onPress={() => navigation.navigate('Province')}
+          text="Ubah Lokasi"
+          style={{gap: 10}}
+        />
       </View>
     </View>
   );
@@ -202,50 +185,9 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     gap: 10,
   },
-  card: {
-    flexDirection: 'row',
-    backgroundColor: '#26353D',
-    // width: '50%',
-    margin: 3,
-  },
-  cardTitleContainer: {},
-  cardSubtitle: {
-    color: '#BBE0FA',
-    fontSize: 18,
-    fontWeight: 'semibold',
-  },
-  cardTitle: {
-    color: '#fff',
-    fontSize: 32,
-    fontWeight: 'bold',
-  },
   buttonContainer: {
     gap: 15,
-  },
-  button: {
-    paddingVertical: 15,
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    gap: 10,
-    borderRadius: 10,
-  },
-  buttonText: {
-    fontSize: 18,
-    fontWeight: 'semibold',
   },
 });
 
 const container = StyleSheet.compose(globalStyles.container, styles.container);
-const buttonPrimary = StyleSheet.compose(styles.button, {
-  backgroundColor: '#26353D',
-});
-const buttonTextPrimary = StyleSheet.compose(styles.buttonText, {
-  color: '#BBE0FA',
-});
-const buttonSecondary = StyleSheet.compose(styles.button, {
-  backgroundColor: '#BBE0FA',
-});
-const buttonTextSecondary = StyleSheet.compose(styles.buttonText, {
-  color: '#1B262C',
-});
